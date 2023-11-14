@@ -1,0 +1,73 @@
+# docker compose file to start DB service, Falsk APP and Streamlit UI
+version: '3.3'
+
+services:
+    db:
+      build:
+        context: .
+        dockerfile: Dockerfile_db
+      image: db:v1
+      container_name: db
+      restart: always
+      environment:
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=mypassword
+      networks:
+        - internal-net
+      volumes:
+        # - type: bind
+        #   source: /Users/priyanshu1004133/k8-project/postgres
+        #   target: /home/postgres/data
+        - mydata:/home/postgres/data
+    
+    flask:
+      build:
+        context: .
+        dockerfile: Dockerfile_flask_app
+      image: flask:v1
+      container_name: flask
+      restart: always
+      environment:
+        - database=postgres
+        - user=postgres
+        - passwd=mypassword
+        - port=5432
+        - host=db
+      networks:
+        - internal-net
+      depends_on: 
+        - db
+      
+    ui:
+      build: 
+        context: .
+        dockerfile: Dockerfile_ui
+      image: ui:v1
+      ports:
+        - "9000:8501"
+      container_name: ui
+      restart: always
+      environment:
+        - LIBRARY_APP_URL=http://flask:9000/book_issued
+      networks:
+        - internal-net
+      depends_on: 
+        - flask
+
+networks:
+  internal-net:
+
+volumes:
+  mydata:
+    driver: local
+
+# docker run -itd --name stream_ui --network custom-net  -e 
+# LIBRARY_APP_URL=http://flask_bk:9000/book_issued  -p 8501:8501 ui:v1 
+
+# docker run -itd --name flask_bk --network custom-net -e database=postgres 
+# -e user=postgres -e passwd=mypassword -e port=5432 -e host=db -p 9000:9000 flask_bk:v1
+
+# docker run -itd -v /Users/priyanshu1004133/k8-project/postgres:/home/postgres/data --name db --network custom-net 
+# -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mypassword db:v1   
+

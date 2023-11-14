@@ -1,0 +1,7 @@
+Table Name: books_issued
+
+Column: member_no (Str(50))
+Column: book_title (Str(100))
+Column: author (Str(50))
+Column: issue_date (Datetime)
+Column: return_date (Datetime)

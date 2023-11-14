@@ -1,0 +1,18 @@
+FROM python:3.9-slim
+
+# copying all files
+COPY ./flask_app  ./flask_app
+
+# installing dependencies
+RUN pip install --no-cache -r /flask_app/requirements.txt
+
+# expose port 9000 while running the container
+EXPOSE 9000
+
+# container entry point 
+ENTRYPOINT [ "python", "-m","flask_app.app" ]
+
+# command 
+# CMD [ "" ] not required , no override needed
+
+# other env variable to provided while running the conatiner

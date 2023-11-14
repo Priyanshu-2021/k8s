@@ -1,0 +1,15 @@
+abcd
+# ENV POSTGRES_DB postgres
+# making default user postgres, although it is the same by default
+# ENV POSTGRES_USER postgres
+# adding passowrd
+# ENV POSTGRES_PASSWORD mypassword
+
+# ENV DBPORT 6000
+
+# adding data storage location default instead of default=/var/lib/postgresql/data
+# ENV PGDATA /home/postgres/data
+
+
+# docker run -itd -v /Users/priyanshu1004133/k8-project/postgres:/home/postgres/data --name db --network custom-net 
+# -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mypassword db:v1

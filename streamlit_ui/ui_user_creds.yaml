@@ -1,0 +1,10 @@
+credentials:
+  usernames:
+    guest:
+      email: user@gmail.com
+      name: Guest-User
+      password: $2b$12$xg6BMf2RbhWjkf7Yajg5eu59Oas9JVj2k/KqWd/8xW5EtKoPfLZDW      # hashed password for 'user'
+cookie:
+  expiry_days: 2
+  key: some_signature_key
+  name: some_cookie_name

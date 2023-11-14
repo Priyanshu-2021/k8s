@@ -1,0 +1,5 @@
+psql -U postgres -d postgres # to login into postgres DB with username `postgres` and table `postrges`
+SELECT datname FROM pg_database;   >>> to list all databases 
+SELECT schema_name FROM information_schema.schemata; >>> to list all schemaexit
+
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';

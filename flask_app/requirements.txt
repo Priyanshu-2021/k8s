@@ -1,0 +1,5 @@
+flask == 2.0.2
+SQLAlchemy == 1.4.*
+psycopg2-binary == 2.9.*
+werkzeug == 2.0.3
+requests == 2.24.0

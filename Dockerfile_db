@@ -1,0 +1,25 @@
+FROM postgres:latest
+
+#  copy initializer queries to run before starting service, this will create required tables in the 
+
+COPY ./database/tables_to_create.sql /docker-entrypoint-initdb.d/
+
+# COPY ./tables_to_create.sql /docker-entrypoint-initdb.d/
+
+# making default DB postgres, although it is the same by default
+# ENV POSTGRES_DB postgres
+# making default user postgres, although it is the same by default
+# ENV POSTGRES_USER postgres
+# adding passowrd
+# ENV POSTGRES_PASSWORD mypassword
+
+# ENV DBPORT 6000
+
+# adding data storage location default instead of default=/var/lib/postgresql/data
+ENV PGDATA /home/postgres/data
+# ENV PGPORT 6000
+
+# exposing the prt 5432, expose helps other container in the same docker network to access present container on exposed port
+EXPOSE 5432
+
+VOLUME [ "/home/postgres/data" ]
