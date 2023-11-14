@@ -13,3 +13,4 @@ abcd
 
 # docker run -itd -v /Users/priyanshu1004133/k8-project/postgres:/home/postgres/data --name db --network custom-net 
 # -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mypassword db:v1
+#####
