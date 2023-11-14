@@ -9,3 +9,4 @@ postgres://postgres:mysecretpassword@postgres-container:5432/mydatabase
 
 # docker run -itd --name flask_bk --network custom-net -e database=postgres 
 # -e user=postgres -e passwd=mypassword -e port=5432 -e host=db -p 9000:9000 flask_bk:v1
+#
